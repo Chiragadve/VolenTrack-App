@@ -1,0 +1,55 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services' // Apply Google services plugin for Firebase
+}
+
+dependencies {
+    // Import the Firebase BoM (Bill of Materials)
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
+
+    // Add the dependencies for Firebase products you want to use:
+    // Example: Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+    // Example: Firebase Firestore
+    implementation 'com.google.firebase:firebase-firestore'
+    // Example: Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth'
+    
+    // Add other dependencies your project requires...
+}
+
+android {
+    namespace = "com.example.voluntrack"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.voluntrack" // Unique app ID
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Debug signing config for now
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Path to the Flutter module
+}
